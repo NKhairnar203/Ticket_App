@@ -6,7 +6,18 @@ import {
   VStack,
   Container,
   useToast,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+  Text
 } from "@chakra-ui/react";
+
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import axios from "axios";
@@ -49,6 +60,26 @@ const Login = () => {
   return (
     <Container maxW={"md"}>
       <VStack spacing={8} mt={20} px={"20px"} py={"40px"} boxShadow={"lg"}>
+        {/* <Heading color={"red"} my={-3} fontSize={"20px"}>Email: eve.holt@reqres.in </Heading>
+        <Heading color={"green"} my={-3} fontSize={"20px"}>Password: cityslicka</Heading> */}
+        <Popover>
+          <PopoverTrigger>
+            <Button bg={"teal.400"}> Check Email & Password</Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+           
+            <PopoverBody>
+              <Text textAlign={"center"} fontWeight={700} color={"red"}>
+                Email: eve.holt@reqres.in
+              </Text>
+              <Text textAlign={"center"} fontWeight={700} color={"green"}>
+                Password: cityslicka
+              </Text>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
         <Heading>Login</Heading>
         <Input
           onChange={(e) => setEmail(e.target.value)}
