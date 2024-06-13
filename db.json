@@ -1,0 +1,76 @@
+{
+  "tikets": [
+    {
+      "title": "Complete Navbar Edit done",
+      "discription": "Hide logout button when user is logged in.",
+      "assignee": "Rahul",
+      "status": "pending",
+      "priority": 2,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "Fix Footer Links",
+      "discription": "Correct broken links in the footer section.",
+      "assignee": "Nilesh",
+      "status": "process",
+      "priority": 5
+    },
+    {
+      "id": 3,
+      "title": "Update User Profile Page",
+      "discription": "Add fields for social media links.",
+      "assignee": "Sanket",
+      "status": "pending",
+      "priority": 3
+    },
+    {
+      "id": 4,
+      "title": "Optimize Images",
+      "discription": "Reduce the size of images for faster loading.",
+      "assignee": "Rushikesh",
+      "status": "completed",
+      "priority": 1
+    },
+    {
+      "id": 5,
+      "title": "Implement Search Function",
+      "discription": "Add a search bar on the homepage.",
+      "assignee": "Sourabh",
+      "status": "process",
+      "priority": 7
+    },
+    {
+      "id": 6,
+      "title": "Enhance Security",
+      "discription": "Implement two-factor authentication.",
+      "assignee": "Rahul",
+      "status": "pending",
+      "priority": 8
+    },
+    {
+      "id": 7,
+      "title": "Design New Logo",
+      "discription": "Create a modern logo for the website.",
+      "assignee": "Nilesh",
+      "status": "completed",
+      "priority": 4
+    },
+    {
+      "title": "Backup Database",
+      "discription": "Schedule regular backups of the database.",
+      "assignee": "Sanket",
+      "status": "pending",
+      "priority": 6,
+      "id": 8
+    },
+    {
+      "id": 9,
+      "title": "Update Documentation",
+      "discription": "Ensure all features are documented properly.",
+      "assignee": "Rushikesh",
+      "status": "pending",
+      "priority": 9
+    }
+  ]
+}
