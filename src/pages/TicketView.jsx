@@ -132,7 +132,7 @@ const TicketView = () => {
                     </Button>
                     <Spacer />
                     <Button onClick={() => handleDelete(id)} colorScheme="red">
-                      Delete
+                      Delete'
                     </Button>
                   </Flex>
                 </Box>

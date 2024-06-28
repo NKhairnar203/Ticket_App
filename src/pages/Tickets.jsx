@@ -72,7 +72,7 @@ const Tickets = () => {
   return (
     <>
       <Container maxW={"1100px"} mb={"100px"} mx={"auto"} pt={10}>
-        <Flex mb={10}>
+        <Flex mb={10} display={"flex"}>
           <Button
             onClick={() => navigate("/")}
             colorScheme="red"
@@ -81,13 +81,12 @@ const Tickets = () => {
             Go To Home
           </Button>
           <Spacer/>
-          <Box minW={"400px"}>
+          <Box minW={{base:"auto",md:"400px"}}>
             <Input
               placeholder="Search Ticket..."
               onChange={(e) => SetSearch(e.target.value)}
             />
           </Box>
-
           <Spacer />
           <Button onClick={() => navigate("/ticket/create")} colorScheme="red">
             Create Ticket
