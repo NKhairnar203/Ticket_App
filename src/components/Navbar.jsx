@@ -6,28 +6,33 @@ import {
   Button,
   Container,
   useColorMode,
-
-  
 } from "@chakra-ui/react";
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-
   IconButton,
- 
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import vite from "../assets/react.svg";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
-import {  RiCommunityLine, RiContactsLine, RiHome2Line, RiLoginBoxLine, RiLoginCircleLine, RiMenuLine, RiSunFill, RiTicket2Line } from "@remixicon/react";
+import {
+  RiCommunityLine,
+  RiContactsLine,
+  RiHome2Line,
+  RiLoginBoxLine,
+  RiLoginCircleLine,
+  RiMenuLine,
+  RiSunFill,
+  RiTicket2Line,
+} from "@remixicon/react";
 const Navbar = () => {
-  const { logout,auth  } = useContext(AuthContext);
+  const { logout, auth } = useContext(AuthContext);
   const { toggleColorMode } = useColorMode();
 
-  console.log(toggleColorMode)
+  console.log(toggleColorMode);
   return (
     <>
       <Box
@@ -78,6 +83,12 @@ const Navbar = () => {
                       <MenuItem icon={<RiLoginBoxLine />}>Login</MenuItem>
                     </Link>
                   )}
+
+                  {auth.isLoggedIn ? (
+                    <MenuItem onClick={logout} icon={<RiLoginBoxLine />}>
+                      LogOut
+                    </MenuItem>
+                  ) : null}
                 </MenuList>
               </Menu>
             </Box>
