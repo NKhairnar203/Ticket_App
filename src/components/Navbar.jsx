@@ -23,7 +23,6 @@ import {
   RiContactsLine,
   RiHome2Line,
   RiLoginBoxLine,
-  RiLoginCircleLine,
   RiMenuLine,
   RiSunFill,
   RiTicket2Line,
@@ -104,18 +103,21 @@ const Navbar = () => {
                 px={"8px"}
                 mx={8}
               >
-                <Button onClick={toggleColorMode}>Dark / Light</Button>
                 <Link to="/">Home</Link>
                 <Link to="/tickets">Tickets</Link>
                 <Link to="/about">About</Link>
                 <Link to="/contact">Contact</Link>
+                {auth.isLoggedIn ? null : <Link to="/login">Login</Link>}
+                {auth.isLoggedIn ? (
+                  <Button
+                    variant={"outline"}
+                    colorScheme="red"
+                    onClick={logout}
+                  >
+                    LogOut
+                  </Button>
+                ) : null}
               </Box>
-
-              {auth.isLoggedIn ? (
-                <Button variant={"outline"} colorScheme="red" onClick={logout}>
-                  LogOut
-                </Button>
-              ) : null}
             </Flex>
           </Flex>
         </Container>

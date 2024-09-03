@@ -9,12 +9,12 @@
       "id": 1
     },
     {
-      "id": 2,
       "title": "Fix Footer Links",
       "discription": "Correct broken links in the footer section.",
       "assignee": "Nilesh",
-      "status": "process",
-      "priority": 5
+      "status": "completed",
+      "priority": 5,
+      "id": 2
     },
     {
       "id": 3,
@@ -71,6 +71,14 @@
       "assignee": "Rushikesh",
       "status": "pending",
       "priority": 9
+    },
+    {
+      "title": "Argent Leave ",
+      "discription": "please leave me. something problem now.",
+      "assignee": "nilesh",
+      "status": "completed",
+      "priority": "8",
+      "id": 10
     }
   ]
 }

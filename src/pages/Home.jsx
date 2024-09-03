@@ -1,15 +1,11 @@
-// src/HomePage.js
+
 import { useNavigate } from "react-router-dom";
-import React from "react";
 import {
   Box,
-  Flex,
   Heading,
   Text,
   Button,
-  Stack,
   Image,
-  useColorMode,
   useColorModeValue,
   VStack,
   HStack,
@@ -17,7 +13,9 @@ import {
 
 
 
+
 const HeroSection = () => {
+
   const navigate = useNavigate();
   function handleClick() {
     navigate("/tickets");
@@ -30,7 +28,7 @@ const HeroSection = () => {
       <Text fontSize="xl" mt={4}>
         Your one-stop solution for managing client tickets efficiently.
       </Text>
-      <Button colorScheme="teal" size="lg" onClick={ handleClick} mt={6}>
+      <Button colorScheme="teal" size="lg" onClick={handleClick} mt={6}>
         Get Started
       </Button>
     </Box>
