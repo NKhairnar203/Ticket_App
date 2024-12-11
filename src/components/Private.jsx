@@ -5,9 +5,10 @@ import { Navigate } from "react-router-dom";
 
 const Private = ({ children }) => {
   // let isLoggedIn = false;
-  const { auth } = useContext(AuthContext);
+  const token = localStorage.getItem("token")
+  // const { auth } = useContext(AuthContext);
 
-  if (!auth?.isLoggedIn) {
+  if (!token) {
     return <Navigate to="/login" />;
   }
  

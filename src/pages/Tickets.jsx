@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Button,
@@ -16,6 +16,7 @@ import axios from "axios";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import TicketCard from "../components/TicketCard";
+import { AuthContext } from "../context/AuthContextProvider";
 
 // eve.holt@reqres.in
 
@@ -28,6 +29,7 @@ const Tickets = () => {
   const [filterValue, setFilterValue] = useState("");
   const [search, SetSearch] = useState("");
 
+  const { auth } = useContext(AuthContext);
   async function fetchData(selectValue, filterValue) {
     setLoading(true);
     try {
@@ -42,11 +44,15 @@ const Tickets = () => {
 
       let res = await axios({
         method: "get",
-        url: `http://localhost:3000/tikets`,
+        url: `http://localhost:3000/api/v1/ticket/get`,
         params: isParams,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`,
+        },
       });
-      setTicket(res.data);
-      console.log(res);
+      setTicket(res.data.tickets);
+      // console.log(res.data.tickets);
       setErr(false);
       setLoading(false);
     } catch (error) {
@@ -67,7 +73,6 @@ const Tickets = () => {
   const search1 = ticket.filter((ele) =>
     ele.title.toLowerCase().includes("update documentation")
   );
-  console.log(search1);
 
   return (
     <>
@@ -80,10 +85,10 @@ const Tickets = () => {
           >
             Go To Home
           </Button>
-          <Spacer/>
-          <Box minW={{base:"auto",md:"400px"}}>
+          <Spacer />
+          <Box minW={{ base: "auto", md: "400px" }}>
             <Input
-              placeholder="Search Ticket..."
+              placeholder="Search Ticket by Title..."
               onChange={(e) => SetSearch(e.target.value)}
             />
           </Box>
@@ -105,11 +110,9 @@ const Tickets = () => {
           <Select
             placeholder="Filter by Status"
             value={filterValue}
-            
             onChange={(e) => setFilterValue(e.target.value)}
           >
-            <option value="pending">Pending</option>
-            <option value="process">Progress</option>
+            <option value="process">Open</option>
             <option value="completed">Completed</option>
           </Select>
         </HStack>

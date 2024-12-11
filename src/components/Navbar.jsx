@@ -31,7 +31,10 @@ const Navbar = () => {
   const { logout, auth } = useContext(AuthContext);
   const { toggleColorMode } = useColorMode();
 
-  console.log(toggleColorMode);
+  function signOut() {
+    logout();
+    window.location.reload();
+  }
   return (
     <>
       <Box
@@ -77,14 +80,19 @@ const Navbar = () => {
                   <Link to="/contact">
                     <MenuItem icon={<RiContactsLine />}>Contact</MenuItem>
                   </Link>
-                  {auth.isLoggedIn ? null : (
-                    <Link to="/login">
-                      <MenuItem icon={<RiLoginBoxLine />}>Login</MenuItem>
-                    </Link>
+                  {auth.token ? null : (
+                    <>
+                      <Link to="/register">
+                        <MenuItem icon={<RiLoginBoxLine />}>Register</MenuItem>
+                      </Link>
+                      <Link to="/login">
+                        <MenuItem icon={<RiLoginBoxLine />}>Login</MenuItem>
+                      </Link>
+                    </>
                   )}
 
-                  {auth.isLoggedIn ? (
-                    <MenuItem onClick={logout} icon={<RiLoginBoxLine />}>
+                  {auth.token ? (
+                    <MenuItem onClick={signOut} icon={<RiLoginBoxLine />}>
                       LogOut
                     </MenuItem>
                   ) : null}
@@ -107,8 +115,14 @@ const Navbar = () => {
                 <Link to="/tickets">Tickets</Link>
                 <Link to="/about">About</Link>
                 <Link to="/contact">Contact</Link>
-                {auth.isLoggedIn ? null : <Link to="/login">Login</Link>}
-                {auth.isLoggedIn ? (
+
+                {auth.token ? null : (
+                  <>
+                    <Link to="/register">Register</Link>
+                    <Link to="/login">Login</Link>
+                  </>
+                )}
+                {auth.token ? (
                   <Button
                     variant={"outline"}
                     colorScheme="red"

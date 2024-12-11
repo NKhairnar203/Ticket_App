@@ -16,7 +16,7 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-const TicketCard = ({ id, title, discription, assignee, status, priority }) => {
+const TicketCard = ({ _id, title, discription, assignee, status, priority }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -46,7 +46,7 @@ const TicketCard = ({ id, title, discription, assignee, status, priority }) => {
             <Box>
               <Flex>
                 <Button
-                  onClick={() => navigate(`/ticket/view/${id}`)}
+                  onClick={() => navigate(`/ticket/view/${_id}`)}
                   colorScheme="green"
                 >
                   View Ticket

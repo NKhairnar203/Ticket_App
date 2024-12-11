@@ -8,18 +8,12 @@ import Tickets from "../pages/Tickets";
 import TicketView from "../pages/TicketView";
 import Login from "../pages/Login";
 import Private from "./Private";
+import Register from "../pages/Register";
 
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          
-            <Home />
-          
-        }
-      />
+      <Route path="/" element={<Home />} />
       <Route
         path="/contact"
         element={
@@ -69,6 +63,7 @@ const AllRoutes = () => {
         }
       />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 };

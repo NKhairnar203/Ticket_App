@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Container,
   Textarea,
@@ -14,42 +14,44 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContextProvider";
 
 const TicketCreate = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
-  const [discription, setDiscription] = useState("");
-  const [assignee, setAssignee] = useState("");
-  const [status, setStatus] = useState("");
+  const [description, setDescription] = useState("");
+
+  const { auth } = useContext(AuthContext);
   const [priority, setPriority] = useState("");
 
   async function handleSubmit() {
-    console.log(title, discription, status);
+    console.log(title, description, status);
     try {
       const newTicket = {
         title: title,
-        discription: discription,
-        assignee: assignee,
-        status: status,
+        description: description,
         priority: priority,
       };
 
       let res = await axios({
         method: "post",
-        url: `http://localhost:3000/tikets`,
+        url: `http://localhost:3000/api/v1/ticket/create`,
         data: newTicket,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`,
+        },
       });
 
-      console.log(res)
-      if(res.status === 201){
-        navigate("/tickets")
+      console.log(res);
+      if (res.status === 201) {
+        navigate("/tickets");
       }
     } catch (error) {
       console.log(error);
     }
   }
-
 
   function handleBack() {
     navigate("/tickets");
@@ -73,37 +75,12 @@ const TicketCreate = () => {
           <Box w={"100%"}>
             <Text fontWeight={600}>Discription</Text>
             <Textarea
-              value={discription}
-              onChange={(e) => setDiscription(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               placeholder="discription"
             />
           </Box>
-          <Box w={"100%"}>
-            <Text fontWeight={600}>Assignee</Text>
-            <Select
-              value={assignee}
-              onChange={(e) => setAssignee(e.target.value)}
-              placeholder="Select Assignee"
-            >
-              <option value="rahul">Rahul</option>
-              <option value="nilesh">Nilesh</option>
-              <option value="sanket">Sanket</option>
-              <option value="rushikesh">Rushikesh</option>
-              <option value="sourabhh">Sourabh</option>
-            </Select>
-          </Box>
-          <Box w={"100%"}>
-            <Text fontWeight={600}>Status</Text>
-            <Select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              placeholder="Select Status"
-            >
-              <option value="pending">Pending</option>
-              <option value="progress">Progress</option>
-              <option value="completed">Completed</option>
-            </Select>
-          </Box>
+
           <Box w={"100%"}>
             <Text fontWeight={600}>Priority</Text>
             <Select
@@ -111,16 +88,9 @@ const TicketCreate = () => {
               onChange={(e) => setPriority(e.target.value)}
               placeholder="Select Priority"
             >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
             </Select>
           </Box>
           <Flex mt={6} w={"100%"} justifyContent="space-evenly">

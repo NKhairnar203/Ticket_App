@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import axios from "axios";
+
 import {
   Box,
   Button,
@@ -17,6 +18,7 @@ import {
   Text,
   Spacer,
 } from "@chakra-ui/react";
+import { AuthContext } from "../context/AuthContextProvider";
 
 const TicketView = () => {
   const { id } = useParams();
@@ -24,16 +26,20 @@ const TicketView = () => {
   const [loading, setLoading] = useState(false);
   const [ticket, setTicket] = useState({});
   const [err, setErr] = useState(false);
+  const { auth } = useContext(AuthContext);
 
-  
   async function fetchData(id) {
     setLoading(true);
     try {
       let res = await axios({
         method: "get",
-        url: `http://localhost:3000/tikets/${id}`,
+        url: `http://localhost:3000/api/v1/ticket/view/${id}`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`,
+        },
       });
-      setTicket(res.data);
+      setTicket(res.data.ticket);
       console.log(res.data);
       setErr(false);
       setLoading(false);
@@ -53,22 +59,25 @@ const TicketView = () => {
   }
 
   async function handleDelete(id) {
-     
     try {
       let res = await axios({
         method: "delete",
-        url: `http://localhost:3000/tikets/${id}`,
+        url: `http://localhost:3000/api/v1/ticket/delete/${id}`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`,
+        },
       });
-     if(res.status == 200){
-      navigate("/tickets");
-     }
-      console.log(res)
+      if (res.status == 200) {
+        navigate("/tickets");
+      }
+      console.log(res);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  const { title, discription, status, priority, assignee } = ticket;
+  const { title, description, status, priority } = ticket;
   return (
     <>
       <Container mx={"auto"} maxW={"container.xl"}>
@@ -102,17 +111,10 @@ const TicketView = () => {
                     Discription
                   </Heading>
                   <Text pt="2" fontSize="sm">
-                    {discription}
+                    {description}
                   </Text>
                 </Box>
-                <Box>
-                  <Heading size="xs" textTransform="uppercase">
-                    Assignee
-                  </Heading>
-                  <Text pt="2" fontSize="sm">
-                    {assignee}
-                  </Text>
-                </Box>
+
                 <Box>
                   <Heading size="xs" textTransform="uppercase">
                     Priority
@@ -132,7 +134,7 @@ const TicketView = () => {
                     </Button>
                     <Spacer />
                     <Button onClick={() => handleDelete(id)} colorScheme="red">
-                      Delete'
+                      Delete
                     </Button>
                   </Flex>
                 </Box>
