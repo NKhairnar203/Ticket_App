@@ -62,7 +62,7 @@ const TicketView = () => {
     try {
       let res = await axios({
         method: "delete",
-        url: `http://localhost:3000/api/v1/ticket/delete/${id}`,
+        url: `https://ticket-app-backend-bkr3.onrender.com/api/v1/ticket/delete/${id}`,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth.token}`,

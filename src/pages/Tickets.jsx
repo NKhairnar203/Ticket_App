@@ -44,7 +44,7 @@ const Tickets = () => {
 
       let res = await axios({
         method: "get",
-        url: `http://localhost:3000/api/v1/ticket/get`,
+        url: `https://ticket-app-backend-bkr3.onrender.com/api/v1/ticket/get`,
         params: isParams,
         headers: {
           "Content-Type": "application/json",
