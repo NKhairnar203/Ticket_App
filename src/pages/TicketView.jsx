@@ -33,7 +33,7 @@ const TicketView = () => {
     try {
       let res = await axios({
         method: "get",
-        url: `http://localhost:3000/api/v1/ticket/view/${id}`,
+        url: `https://ticket-app-backend-bkr3.onrender.com/api/v1/ticket/view/${id}`,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth.token}`,
